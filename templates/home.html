@@ -8,20 +8,25 @@
     <style>
         #banner {
           width: 100%;
-          height:  360px
+          height:  360px;
+          margin-bottom: 16px;
         }
     </style>
   </head>
   <body>
+    {% include 'nav.html' %}
+    <img class="img-fluid" id="banner" src="https://85fa0cf2-915b-48c7-ae47-28b928acfbaa-00-2tmq3bdm6c7ea.spock.replit.dev/static/banner.jpg"  alt="Banner Image" />
      <div class="container">
+       <h1 class="text-center mt-2 mb-4">{{company_name}} Careers</h1>
 
-        <h1 class="text-center mt-2 mb-4">{{company_name}} Careers</h1>
-        <img class="img-fluid" id="banner" src="https://85fa0cf2-915b-48c7-ae47-28b928acfbaa-00-2tmq3bdm6c7ea.spock.replit.dev/static/banner.jpg"  alt="Banner Image" />
-    
-      <h2 class="text-center mt-2 mb-4">About Onada</h2>
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia egestas neque quis suscipit. Vivamus varius pulvinar scelerisque. Vivamus mattis, urna quis elementum efficitur, dui neque ornare urna, eu volutpat ligula augue ac massa. Nulla sit amet tempus arcu, vitae facilisis sem. Ut lorem lorem, pretium vel ullamcorper nec, laoreet et metus. Vestibulum at velit at odio semper imperdiet. Vivamus malesuada dolor vel metus convallis, quis viverra felis eleifend. Nam eget consectetur lectus. Nunc ligula mauris, consectetur sed est in, fringilla facilisis orci. Nullam ac eros non mi aliquet fermentum ut ut nunc. Aliquam congue aliquet accumsan. Duis eget ante auctor, dignissim sem id, vehicula justo. Praesent luctus nulla at luctus accumsan. Mauris 
-        
-        sed sem ut nulla auctor venenatis vel nec quam. Morbi id accumsan nisi. Fusce faucibus elit in mi sodales, non dictum sem efficitur</p>
+       <div class="row" style="margin-bottom:16px;">
+         <div class="col-md-6">
+      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacinia egestas neque quis suscipit. Vivamus varius pulvinar scelerisque. Vivamus mattis, urna quis elementum efficitur, dui neque ornare urna, eu volutpat ligula augue ac massa. Nulla sit amet tempus arcu, vitae facilisis sem. Ut lorem lorem, pretium vel ullamcorper nec, laoreet et metus. Vestibulum at velit at odio semper imperdiet. Vivamus malesuada dolor vel metus convallis, quis viverra felis eleifend. Nam eget consectetur lectus. Nunc ligula mauris, consectetur sed est in, fringilla facilisis orci.</p>
+       </div>
+       <div class="d-none d-md-block col-md-6">
+         <img src="static/at_work1.jpg" style="height: 320px; border-radius= 4px" />
+       </div>
+       </div>
     
         <h2 class="text-center mt-2 mb-4">Open Positions</h2>
         <div>
@@ -30,10 +35,11 @@
           {% endfor %}
         </div>
         <div class="text-center">
-           <button type="button" class="btn btn-primary btn-lg text-center">Contact Us</button>
+           <a href="mailto:hello@onadacareers.com?subject=Contact%20Us&body=My%20Name%20%3A%20%3CYour%20name%3E%0D%0AMy%20Question%20%3A%20%3CEnter%20question%20here%3E" type="button" class="btn btn-primary btn-lg text-center">Contact Us</a>
         </div>
       
        </div>
-     <p class="text-center mt-4">copyright onada careers</p>
+     
+    {% include 'footer.html' %}
   </body>
 </html>
