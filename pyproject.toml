@@ -8,6 +8,8 @@ authors = ["Your Name <you@example.com>"]
 python = ">=3.10.0,<3.11"
 replit = "^3.2.4"
 Flask = "^2.2.0"
+sqlalchemy = "^2.0.30"
+singlestoredb = "^1.3.1"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md
