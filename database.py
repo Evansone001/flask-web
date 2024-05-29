@@ -34,6 +34,30 @@ def load_jobs_from_db():
         jobs = [dict(row) for row in result.mappings()]
         return jobs
 
+# def load_job_from_db(id):
+  # with engine.connect() as conn:
+  #   result = conn.execute(text("SELECT * FROM jobs WHERE id= :val"),def load_job_from_db(id):
+def load_job_from_db(id):
+  # with engine.connect() as conn:
+  #   result = conn.execute(text("SELECT * FROM jobs WHERE id= :val"), 
+  with engine.connect() as conn:
+      result = conn.execute(text("SELECT * FROM jobs WHERE id = :id"), {"id": id})
+      rows =  [dict(row) for row in result.mappings()]  # Fetch all rows as a list
+      if len(rows) == 0:
+          return None
+      else:
+          return rows # Iterate over rows and convert each to a dictionary
+
+
+
+    # # Fetch the first row (there should only be one)
+    # job = result.fetchone()
+    # # Check if a job was found
+    # if job:
+    #   return dict(job)  # Convert the result to a dictionary
+    # else:
+    #   return None  # Return None if no job was found val=id)
+
 
 # with engine.connect() as conn:
 #   result = conn.execute(text("select * from  jobs"))
