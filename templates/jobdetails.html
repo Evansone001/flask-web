@@ -1,19 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ job.title }} - Onada Careers</title>
+    {% include 'bootstrap.html' %}
+
 </head>
 <body>
-    <div>
-        <h3>Title</h3>
-
-        <h4>
-            {{ job.title }}
-        </h4>
-    </div>
+    {% include 'nav.html' %}
+    {% include 'banner.html' %}
+    <div class="container">
+           <h3 class="text-center mt-2 mb-4">{{company_name}} Careers</h3>
+    <h4>Title: {{ job.title }}</h4>
+    <p class="lead">Location: {{ job.location }}</p>
     
-
+    <h4>Responsibilities:</h4>
+        <ul>
+            {% if job.responsibilities %}
+                {% for line in job.responsibilities.split('\n') %}
+                <li>{{line}}</li>
+                {% endfor %}
+            {% else %}
+            <li>No responsibilities listed</li>
+            {% endif %}
+        </ul>
+     
+    <h4>Requirements:</h4>
+        <ol>
+            {% if job.requirements %}
+                {% for line in job.requirements.split('\n')%}
+                    <li>{{line}}</li>
+                {%endfor%}
+            {% else %}
+            <li>No requirements listed</li>
+            {% endif %}
+        </ol>
+    <h4>Salary</h4>
+    <p>Salary: {{ job.salary }} {{ job.currency }}</p>
+    </div>
 </body>
 </html>
+
+

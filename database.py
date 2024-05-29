@@ -34,19 +34,25 @@ def load_jobs_from_db():
         jobs = [dict(row) for row in result.mappings()]
         return jobs
 
-# def load_job_from_db(id):
-  # with engine.connect() as conn:
-  #   result = conn.execute(text("SELECT * FROM jobs WHERE id= :val"),def load_job_from_db(id):
+
 def load_job_from_db(id):
-  # with engine.connect() as conn:
-  #   result = conn.execute(text("SELECT * FROM jobs WHERE id= :val"), 
-  with engine.connect() as conn:
-      result = conn.execute(text("SELECT * FROM jobs WHERE id = :id"), {"id": id})
-      rows =  [dict(row) for row in result.mappings()]  # Fetch all rows as a list
-      if len(rows) == 0:
-          return None
-      else:
-          return rows # Iterate over rows and convert each to a dictionary
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT * FROM jobs WHERE id = :id"), {"id": id})
+        rows = [dict(row) for row in result.mappings()]  # Fetch all rows as a list of dictionaries
+        if len(rows) == 0:
+            return None
+        else:
+            return rows[0]  # Return the first (and only) job dictionary
+# def load_job_from_db(id):
+#   # with engine.connect() as conn:
+#   #   result = conn.execute(text("SELECT * FROM jobs WHERE id= :val"), #small error here made me question  my life !hahaha
+#   with engine.connect() as conn:
+#       result = conn.execute(text("SELECT * FROM jobs WHERE id = :id"), {"id": id})
+#       rows =  [dict(row) for row in result.mappings()]  # Fetch all rows as a list
+#       if len(rows) == 0:
+#           return None
+#       else:
+#           return rows # Iterate over rows and convert each to a dictionary
 
 
 
