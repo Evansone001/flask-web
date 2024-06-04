@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Application Submited</title>
+    {% include 'bootstrap.html' %}
+
+  </head>
+  <body>
+    {% include 'nav.html' %}
+    {% include 'banner.html' %}
+    <div class="container">
+         <h3 class="text-center mt-2 mb-4">Onada Careers</h3>
+
+      <p>Your Application for the role of <b> {{job['title']}} </b> at Onada has been submitted successfully</p>
+      <b>Fullname: </b>
+      <div class="mb-2">{{application['full_name']}}</div>
+      
+      <b>Email: </b>
+      <div class="mb-2">{{application['email']}}</div>
+  
+      <b>LinkeDIN: </b>
+      <div class="mb-2">{{application['linkedin_url']}}</div>
+      
+      <b>Education: </b>
+      <div class="mb-2">{{application['education']}}</div>
+      
+      <b>Work Experience: </b>
+      <div class="mb-2">{{application['experience']}}</div>
+      <b>Resume: </b>
+      <div class="mb-2">{{application['resume_url']}}</div>
+  
+    </div>
+    {% include 'footer.html' %}
+  </body>
+</html>

@@ -2,6 +2,8 @@ import os
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import OperationalError
 from time import sleep
+import logging
+from sqlalchemy.exc import SQLAlchemyError
 
 # Database connection details
 if 'DATABASE_URL' in os.environ:
@@ -43,6 +45,47 @@ def load_job_from_db(id):
             return None
         else:
             return rows[0]  # Return the first (and only) job dictionary
+
+def add_application_to_db(job_id, data):
+  with engine.connect() as conn:
+    query = text("INSERT INTO job_applications (job_id, full_name, email, linkedin_url, education, work_experience, resume_url) VALUES (:job_id, :full_name, :email, :linkedin_url, :education, :work_experience, :resume_url)")
+
+    params = {
+          "job_id": int(job_id),
+          "full_name": data['full_name'],
+          "email": data['email'],
+          "linkedin_url": data['linkedin_url'],
+          "education": data['education'],
+          "work_experience": data['work_experience'],
+          "resume_url": data['resume_url'],
+      }
+
+    conn.execute(query, params)
+
+#     try:
+#         with engine.connect() as conn:
+#             query = text("""
+#                 INSERT INTO applications (
+#                     job_id, full_name, email, linkedin_url, education, work_experience, resume_url
+#                 ) VALUES (
+#                     :job_id, :full_name, :email, :linkedin_url, :education, :work_experience, :resume_url
+#                 )
+#             """)
+#             conn.execute(query, {
+#                 'job_id': job_id,  # Ensure job_id is an integer
+#                 'full_name': data['full_name'],
+#                 'email': data['email'],
+#                 'linkedin_url': data.get('linkedin_url', ''),
+#                 'education': data.get('education', ''),
+#                 'work_experience': data.get('work_experience', ''),
+#                 'resume_url': data.get('resume_url', '')
+#             })
+#             logging.info(f"Application for job_id {job_id} added successfully.")
+#     except SQLAlchemyError as e:
+#         logging.error(f"Error adding application for job_id {job_id}: {e}")
+#         raise
+
+
 # def load_job_from_db(id):
 #   # with engine.connect() as conn:
 #   #   result = conn.execute(text("SELECT * FROM jobs WHERE id= :val"), #small error here made me question  my life !hahaha
@@ -56,45 +99,6 @@ def load_job_from_db(id):
 
 
 
-    # # Fetch the first row (there should only be one)
-    # job = result.fetchone()
-    # # Check if a job was found
-    # if job:
-    #   return dict(job)  # Convert the result to a dictionary
-    # else:
-    #   return None  # Return None if no job was found val=id)
-
-
-# with engine.connect() as conn:
-#   result = conn.execute(text("select * from  jobs"))
-#   jobs = [dict(row) for row in result.mappings()]
-#   print(jobs)
-  
-  # result_dicts =[]
-  # for row in result.all():
-  #   result_dicts.append(dict(row))
-  # print(result_dicts)
-  
-
-# def test_db_connection(engine, retries=5):
-#     """Test the database connection with retry logic."""
    
-#     while retries > 0:
-#         try:
-#             # Attempt to connect to the database
-#             conn = engine.connect()
-#             print("Connection successful!")
-#             conn.close()
-#             break
-#         except OperationalError as e:
-#             # Handle connection failure
-#             print(f"Connection failed: {e}")
-#             print(f"Retrying in 5 seconds... {retries} retries left.")
-#             retries -= 1
-#             sleep(5)
-    
-#     if retries == 0:
-#         raise Exception("Failed to connect to the database after several attempts")
-    
 
 
